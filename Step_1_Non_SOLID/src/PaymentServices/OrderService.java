@@ -1,9 +1,11 @@
 package PaymentServices;
 
 public interface OrderService {
-    public void onSiteOrderRegister(String customerName);
-    public void onlineOrderRegister(String customerName);
-    public void onSiteOrderPayment(int foodPrice);
-    public void onlineOrderPayment(int foodPrice);
+    void onSiteOrderRegister(String customerName);
+    void onSiteOrderPayment(int foodPrice);
+    void onlineOrderRegister(String customerName);
+    void onlineOrderPayment(int foodPrice);
+    void phoneOrderRegister(String customerName);
+    void phoneOrderPayment(int foodPrice);
 
 }
