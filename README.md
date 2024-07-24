@@ -1,0 +1,170 @@
+# <strong>گام اول:</strong>
+
+| شرحی کوتاه از تغییر                                                                       | عنوان تغییر                                               | محل اعمال تغییرات  | ردیف |
+|-------------------------------------------------------------------------------------------|-----------------------------------------------------------|--------------------|------|
+| افزودن یک تابع void با عنوان phoneOrderPayment                                            | افزودن تابع پرداخت تلفنی                                  | OrderService       | ۱    |
+| افزودن یک تابع void با عنوان phoneOrderPayment                                            | افزودن تابع ثبت سفارش تلفنی                               | OrderService       | ۲    |
+| اضافه کردن توابع void موجود در واسط OrderService                                          | افزودن کلاس پیاده‌سازی سرویس سفارش تلفنی                  | PhoneOrderService  | ۳    |
+| اضافه کردن دستور چاپ ساده برای بدنه توابع کلاس                                            | افزودن پیاده‌سازی برای تابع‌های واسط OrderService         | PhoneOrderService  | ۴    |
+| اضافه کردن تابع phoneOrderRegister                                                        | اضافه کردن کردن تابع جدید اضافه شده در واسط OrderService  | OnlineOrderService | ۵    |
+| اضافه کردن تابع phoneOrderPayment                                                         | اضافه کردن کردن تابع جدید اضافه شده در واسط OrderService  | OnlineOrderService | ۶    |
+| اضافه کردن تابع phoneOrderRegister                                                        | اضافه کردن کردن توابع جدید اضافه شده در واسط OrderService | OnSiteOrderService | ۷    |
+| اضافه کردن تابع phoneOrderPayment                                                         | اضافه کردن کردن توابع جدید اضافه شده در واسط OrderService | OnSiteOrderService | ۸    |
+| اضافه کردن توضیح برای گزینه سوم شیوه ثبت تلفنی و اضافه کردن condition متناظر در switch    | اضافه کردن دریافت ورودی شیوه ثبت سفارش تلفنی              | Main               | ۹    |
+| اضافه کردن توضیح برای گزینه سوم شیوه پرداخت تلفنی و اضافه کردن condition متناظر در switch | اضافه کردن دریافت ورودی شیوه پرداخت تلفنی                 | Main               | ۱۰   |
+مجموع تغییرات: ۱۰
+
+
+# <strong>گام دوم:</strong>
+
+در خصوص این برنامه‌ای که نوشته شده بود و شما یک قابلیت به آن اضافه کردید، بر اساس اصول SOLID موارد نقض و یا محقق شدن هر کدام از آن اصول را بیان کنید. در بیان موارد تحقق و نقض، علت تحقق و یا نقض را نیز به صورت کامل توضیح دهید:
+
+<table dir='rtl'>
+<tbody>
+<tr>
+<td rowspan="2" width="240">
+<p>اصل 1</p>
+<p>Single Responsibility</p>
+</td>
+<td width="95">
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td width="454">
+<p>در توابع OnlineOrderService و On-SiteOrderService و PhoneOrderService این اصل رعایت شده است و هر تابعی تنها وظیفه خودش را دارد.</p>
+همچنین در کلاس‌های Food و Order نیز توابع مربوط به آن این اصل در آن‌ها رعایت شده‌است.
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>در تمامی موارد و توابع مربوطه این اصل رعایت شده‌است.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 2</p>
+<p>Open-Close Principle (OCP)</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>&nbsp;در کلاس‌های Food و Order این اصل رعایت شده‌است و علی‌رغم اضافه شدن یک متد پرداختی جدید نیازی به تغییر در این کلاس‌ها نبود.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>همانطور که در جدول بالا مشاهده می‌کنید پس از اضافه کردن متد پرداختی جدید ۱۰ تغییر داشتیم و عمده این تغییرات در کلاس‌های OnlineOrderService و On-SiteOrderService بود و همچنین مجبور شدیم در واسط OrderService هم تغییراتی به وجود بیاریم.  </p>
+و این موارد نشان می ‌دهد در payment services این اصل نقض شده و باید اصلاحش کنیم.
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 3</p>
+<p>Liskov Substitution Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>در واسط OrderService و زیرکلاس‌های مربوط به آن این اصل رعایت شده‌است به‌طوریکه هریک از این زیرکلاس های توابع Payment و Register را دارد.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>این اصل در واسط OrderService رعایت شده است و در کلاس‌های Food, Order نیز زیر کلاسی وجود نداشته است.</p>
+بنابراین می‌توان گفت این اصل جایی نقض نشده‌است.
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 4</p>
+<p>Interface Segregation Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>این اصل جایی محقق نشده‌است.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>&nbsp;همانطور که مشاهده می‌شود واسط OrderService یک واسط بزرگ است و ما مجبور شده‌ایم در کلاس‌های OnlineOrderService, On-siteOrderService, PhoneOrderService توابع خالی پیاده‌سازی کنیم در صورتی که تنها کافی بود هریک از این زیرکلاس ۲ تابع Payment, Register را پیاده‌سازی کنند.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 5</p>
+<p>Dependency Inversion Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>&nbsp;در paymentServices این اصل رعایت شده‌است و وابستگی زیرکلاس‌های مختلف آن در سطح واسط‌ها هست و واسط OrderService در اینجا برای ما این وابستگی بین زیرکلاس‌های مختلف پرداخت را فراهم می‌کند.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>این اصل در جایی نقض نشده‌است.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+در خصوص هرکدام از موارد نقض هرکدام از اصول، یک راهکار را به منظور رفع آن مشکل ارایه داده و در جدول زیر ثبت نمایید:
+
+<table dir='rtl'>
+<tbody>
+<tr>
+<td width="168">
+<p><strong>اصل مربوطه (از اصول </strong><strong>SOLID</strong><strong>)</strong></p>
+</td>
+<td width="246">
+<p><strong>علت نقض</strong></p>
+</td>
+<td width="284">
+<p><strong>راه حل پیشنهادی</strong></p>
+</td>
+</tr>
+<tr>
+<td width="168">
+<p>Open-Close Principle (OCP)
+</p>
+</td>
+<td width="246">
+<p>بعد از اضافه شدن مدل پرداختی جدید حجم تغییرات زیاد بوده‌است و واسط OrderService  و کلاس‌های دیگر پرداختی مجبور به تغییر شدند.</p>
+</td>
+<td width="284">
+<p>باید واسط OrderService را عمومی‌تر طراحی کنیم تا نیازی نباشد پس از اضافه شدن یک زیرکلاس دیگر نیاز به تغییر واسط و زیرکلاس‌های مربوطه نباشد.</p>
+</td>
+</tr>
+<tr>
+<td width="168">
+<p>&nbsp;Interface Segregation Principle</p>
+</td>
+<td width="246">
+<p>در زیر کلاس‌های OnlineOrderService, On-SiteOrderService, PhoneOrderService مجبور شده‌ایم توابع خالی پیاده‌سازی کنیم.</p>
+</td>
+<td width="284">
+<p>بهتر است در واسط OrderService ما ۲ تابع Payment, Register داشته باشیم بجای اینکه به ازای هر متد پرداختی توابع مخصوص آن متد را داشته باشیم.</p>
+</td>
+</tr>
+<tr>
+</tbody>
+</table>
